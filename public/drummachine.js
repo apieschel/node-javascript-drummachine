@@ -247,6 +247,8 @@ document.addEventListener("keypress", function (e) {
   });
   
   $('#currentFiles').submit(function(e) {
+    clearInterval(interval);
+    data.tracks = [];
     $.ajax({
       url: '/music/directory',
       type: 'get',
@@ -262,8 +264,39 @@ document.addEventListener("keypress", function (e) {
         }
         console.log(tracks);
         data.tracks = tracks;
-        console.log(data.tracks);
-        draw();
+        console.log(data.tracks);  
+        
+        interval = setInterval(function() {
+          data.step = (data.step + 1) % data.tracks[0].steps.length;
+
+          data.tracks
+            .filter(function(track) { return track.steps[data.step]; })
+            .forEach(function(track) {
+              let clone = track.playSound.cloneNode(true);
+              let buffer;
+
+              const request = new XMLHttpRequest();
+              request.open('GET', track.playSound.src, true);
+              request.responseType = 'arraybuffer';
+              request.onload = function() {
+                ac.decodeAudioData(request.response, function(buffer) {
+                  buffer = buffer;
+
+                  const gain = ac.createGain();
+                  const playSound = ac.createBufferSource();
+                  playSound.buffer = buffer;
+                  playSound.connect(gain);
+                  gain.connect(recorderNode);
+                  gain.connect(ac.destination);
+                  playSound.start(0);
+
+                  clone.remove();
+                });     
+              }
+
+              request.send();
+            });
+        }, 100);
       }
     });
     e.preventDefault();

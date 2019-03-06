@@ -246,18 +246,31 @@ document.addEventListener("keypress", function (e) {
     } 
   });
   
-  $('#currentFiles').submit(function(e) {    
+  $('#currentFiles').submit(function(e) {
+    // get all the inputs into an array.
+    var $inputs = $('#currentFiles :input');
+
+    // not sure if you wanted this, but I thought I'd add it.
+    // get an associative array of just the values.
+    var values = {};
+    $inputs.each(function() {
+        values[this.name] = $(this).val();
+    });
+    
+    console.log($inputs);
+    console.log(values.directory);
+    
     clearInterval(interval);
     data.tracks = [];
     console.log(e);
     
     const request = new XMLHttpRequest();
-    request.open('GET', '/music/directory');
+    request.open('GET', '/music/directory?directory=' + values.directory);
     request.onload = function() {
       console.log(request);
       let res = request.response;
       let tracks = [];
-      console.log(res);
+      console.log(typeof(res));
       if(res.files[0]) {
         for(let i = 0; i < res.files[0].length; i++) {
           let audioSrc = "/public/music/" + res.directory + "/" + res.files[0][i];

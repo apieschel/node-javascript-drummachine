@@ -20,8 +20,10 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="public/style.css">
     
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
     <script src="public/client.js" defer></script>
+    <script src="public/drummachine.js" defer></script>
   </head>
   <body>
     
@@ -34,6 +36,26 @@
         <input id="getFiles" type="submit" value="LOAD .WAV FILES">
       </form>
       <div id="jsonResult"></div>
+    </div>
+    
+    <div class="container">
+      <div class="instructions">
+        <strong><u>Instructions</u>:</strong> Web browsers aren't great at keeping accurate time. If you want an accurate BPM, 
+        then you can hook up an external sampler or drum machine to your computer (via MIDI interface) to keep time. 
+        Tell the drum machine to play 16 straight sixteenth notes, 
+        and this machine in the browser will update its count every time your external 
+        drum machine plays a note. Click the "MIDI" button, and try it out! 
+        While MIDI is off, the browser will keep time on its own. Press "C" on your keyboard to clear the tracks.
+      </div>
+      <div class="flex-container">
+        <canvas id="screen" width="637" height="350"></canvas>
+      </div>
+      <div class="flex-container">
+        <button id="record">RECORD</button>
+        <button id="stop" class="hidden">STOP</button>
+        <button id="wav" class="hidden">CREATE .WAV FILE</button>
+        <button id="midi">MIDI OFF</button>
+      </div>
     </div>
 
     <!-- include the Glitch button to show what the webpage is about and

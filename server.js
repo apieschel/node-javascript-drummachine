@@ -21,7 +21,6 @@ const storage = multer.diskStorage({
     const dateString = date.getMonth() + "-" + date.getDate() + "-" + date.getFullYear() + "_" + date.getHours() + "h" + date.getMinutes() + "m";
     const path = file.fieldname + '_' + dateString;
     const dir = process.cwd() + '/public/music/' + path;
-    console.log(dir);
 
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
@@ -30,7 +29,6 @@ const storage = multer.diskStorage({
     cb(null, 'public/music/'  + path);
   },
   filename: function (req, file, cb) {
-    console.log(file);
     cb(null, Date.now() + '-' + file.originalname);
   }
 });
@@ -61,7 +59,6 @@ let logs = [];
 function readDirectory(callback){
   fs.readdir(path, function(err, items) {
      logs.push(items);
-     console.log(path);
      callback(logs);       
   }); 
 }

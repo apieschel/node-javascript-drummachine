@@ -20,34 +20,21 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
     
-    <!-- import the webpage's client-side javascript file -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous" defer></script>
     <script src="/client.js" defer></script>
   </head>
   <body>
-    <header>
-      <h1>
-        A Dream of the Future
-      </h1>
-    </header>
-
-    <main>
-      <p class="bold">Oh hi,</p>
-      
-      <p>Tell me your hopes and dreams:</p>
-      
-      <form>
-        <input name="dream" type="text" maxlength="100" placeholder="Dreams!" aria-labelledby="submit-dream">
-        <button type="submit" id="submit-dream">Submit Dream</button>
+    
+    <div class="view">
+      <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
+        <input id="inputfield" type="file" name="upfile" multiple required>
+        <input id="button" type="submit" value="UPLOAD">
       </form>
-      
-      <section class="dreams">
-        <ul id="dreams"></ul>
-      </section>
-    </main>
-
-    <footer>
-      Made with <a href="https://glitch.com">Glitch</a>!
-    </footer>
+      <form method="GET" action="/music/directory" id="currentFiles">
+        <input id="getFiles" type="submit" value="LOAD .WAV FILES">
+      </form>
+      <div id="jsonResult"></div>
+    </div>
 
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->

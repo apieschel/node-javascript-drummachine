@@ -16,11 +16,6 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-// listen for requests :)
-const listener = app.listen(process.env.PORT, function() {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
-
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -104,6 +99,8 @@ app.post('/api/fileanalyse', upload.array('upfile', 20), function (req, res, nex
   res.redirect('/');
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Node.js listening ...');
+
+// listen for requests :)
+const listener = app.listen(process.env.PORT, function() {
+  console.log('Your app is listening on port ' + listener.address().port);
 });

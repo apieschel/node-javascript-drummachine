@@ -1,42 +1,50 @@
-// client-side js
-// run by the browser each time your view template is loaded
+$(document).ready(function() {
+  
+  $('#currentFiles').submit(function(e) {
+    $.ajax({
+      url: '/music/directory',
+      type: 'get',
+      data: $('#currentFiles').serialize(),
+      success: function(data) {
+        $("#jsonResult").empty();
+        if(data.files[0]) {
+          for(let i = 0; i < data.files[0].length; i++) {
+            let audio = document.createElement("audio");
+            audio.src = "/public/music/" + data.directory + "/" + data.files[0][i];
+            audio.controls = "true";
+            $("#jsonResult").append(audio);
+          }
+        }
+      }
+    });
+    e.preventDefault();
+  });
 
-console.log('hello world :o');
-
-// our default array of dreams
-const dreams = [
-  'Find and count some sheep',
-  'Climb a really tall mountain',
-  'Wash the dishes'
-];
-
-// define variables that reference elements on our page
-const dreamsList = document.getElementById('dreams');
-const dreamsForm = document.forms[0];
-const dreamInput = dreamsForm.elements['dream'];
-
-// a helper function that creates a list item for a given dream
-const appendNewDream = function(dream) {
-  const newListItem = document.createElement('li');
-  newListItem.innerHTML = dream;
-  dreamsList.appendChild(newListItem);
-}
-
-// iterate through every dream and add it to our page
-dreams.forEach( function(dream) {
-  appendNewDream(dream);
+  const http = new XMLHttpRequest();
+  const url='/music';
+  http.open("GET", url);
+  http.send();
+  http.onreadystatechange = function() {
+    if(this.readyState == 4) {
+      $.ajax({
+        url: '/music',
+        type: 'get',
+        data: $('#currentFiles').serialize(),
+        success: function(data) {
+          if(data.files[0]) {
+            let select = document.createElement("select");
+            select.required = "true";
+            select.name = "directory";
+            for(let i = 0; i < data.files[0].length; i++) {
+              let option = document.createElement("option");
+              option.value = data.files[0][i];
+              option.innerText = data.files[0][i];
+              select.append(option);
+            }
+            document.querySelector("#currentFiles").append(select);
+          }
+        }
+      });
+    }
+  } 
 });
-
-// listen for the form to be submitted and add a new dream when it is
-dreamsForm.onsubmit = function(event) {
-  // stop our form submission from refreshing the page
-  event.preventDefault();
-
-  // get dream value and add it to the list
-  dreams.push(dreamInput.value);
-  appendNewDream(dreamInput.value);
-
-  // reset form 
-  dreamInput.value = '';
-  dreamInput.focus();
-};

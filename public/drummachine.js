@@ -252,15 +252,18 @@ document.addEventListener("keypress", function (e) {
       type: 'get',
       data: $('#currentFiles').serialize(),
       success: function(data) {
-        $("#jsonResult").empty();
+        let tracks = [];
         if(data.files[0]) {
+          console.log(data);
           for(let i = 0; i < data.files[0].length; i++) {
-            let audio = document.createElement("audio");
-            audio.src = "/public/music/" + data.directory + "/" + data.files[0][i];
-            audio.controls = "true";
-            $("#jsonResult").append(audio);
+            let audioSrc = "/public/music/" + data.directory + "/" + data.files[0][i];
+            tracks.push(createTrack(green, audioSrc));
           }
         }
+        console.log(tracks);
+        data.tracks = tracks;
+        console.log(data.tracks);
+        draw();
       }
     });
     e.preventDefault();

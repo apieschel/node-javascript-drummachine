@@ -36,6 +36,7 @@ let interval = setInterval(function() {
   data.tracks
     .filter(function(track) { return track.steps[data.step]; })
     .forEach(function(track) {
+      console.log(track);
       let clone = track.playSound.cloneNode(true);
       let buffer;
       
@@ -268,13 +269,13 @@ document.addEventListener("keypress", function (e) {
     request.open('GET', '/music/directory?directory=' + values.directory);
     request.onload = function() {
       console.log(request);
-      let res = request.response;
+      let res = JSON.parse(request.response);
       let tracks = [];
       console.log(typeof(res));
       if(res.files[0]) {
         for(let i = 0; i < res.files[0].length; i++) {
           let audioSrc = "/public/music/" + res.directory + "/" + res.files[0][i];
-          tracks.push(createTrack(green, audioSrc));
+          tracks.push(createTrack(green, new Audio(audioSrc)));
         }
       }
       console.log(tracks);
@@ -282,6 +283,39 @@ document.addEventListener("keypress", function (e) {
       console.log(data.tracks); 
     }
     request.send();
+    
+    interval = setInterval(function() {
+          data.step = (data.step + 1) % data.tracks[0].steps.length;
+
+          data.tracks
+            .filter(function(track) { return track.steps[data.step]; })
+            .forEach(function(track) {
+              console.log(track);
+              let clone = track.playSound.cloneNode(true);
+              let buffer;
+
+              const request = new XMLHttpRequest();
+              request.open('GET', track.playSound.src, true);
+              request.responseType = 'arraybuffer';
+              request.onload = function() {
+                ac.decodeAudioData(request.response, function(buffer) {
+                  buffer = buffer;
+
+                  const gain = ac.createGain();
+                  const playSound = ac.createBufferSource();
+                  playSound.buffer = buffer;
+                  playSound.connect(gain);
+                  gain.connect(recorderNode);
+                  gain.connect(ac.destination);
+                  playSound.start(0);
+
+                  clone.remove();
+                });     
+              }
+
+              request.send();
+            });
+        }, 100);
     
     /*
     $.ajax({

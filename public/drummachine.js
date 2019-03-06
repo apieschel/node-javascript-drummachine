@@ -249,6 +249,7 @@ document.addEventListener("keypress", function (e) {
   $('#currentFiles').submit(function(e) {    
     clearInterval(interval);
     data.tracks = [];
+    console.log(e);
     
     const request = new XMLHttpRequest();
     request.open('GET', '/music/directory');

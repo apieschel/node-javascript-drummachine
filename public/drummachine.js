@@ -246,9 +246,30 @@ document.addEventListener("keypress", function (e) {
     } 
   });
   
-  $('#currentFiles').submit(function(e) {
+  $('#currentFiles').submit(function(e) {    
     clearInterval(interval);
     data.tracks = [];
+    
+    const request = new XMLHttpRequest();
+    request.open('GET', '/music/directory');
+    request.onload = function() {
+      console.log(request);
+      let res = request.response;
+      let tracks = [];
+      console.log(res);
+      if(res.files[0]) {
+        for(let i = 0; i < res.files[0].length; i++) {
+          let audioSrc = "/public/music/" + res.directory + "/" + res.files[0][i];
+          tracks.push(createTrack(green, audioSrc));
+        }
+      }
+      console.log(tracks);
+      data.tracks = tracks;
+      console.log(data.tracks); 
+    }
+    request.send();
+    
+    /*
     $.ajax({
       url: '/music/directory',
       type: 'get',
@@ -299,6 +320,7 @@ document.addEventListener("keypress", function (e) {
         }, 100);
       }
     });
+    */
     e.preventDefault();
   });
   

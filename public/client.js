@@ -21,6 +21,8 @@ $(document).ready(function() {
               select.append(option);
             }
             document.querySelector("#wavContainer").append(select);
+            document.querySelector("#currentFiles").className = "";
+            document.querySelector("#clearDirectory").className = "";
           }
         }
       });

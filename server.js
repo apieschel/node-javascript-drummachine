@@ -105,7 +105,7 @@ app.get('/music/directory', function(req,res){
   
    path = process.cwd() + '/public/music/' + ip + '/' + req.query.directory;
    readDirectory(function(logFiles){
-     res.json({files : logFiles, directory: req.query.directory});
+     res.json({files : logFiles, directory: ip + '/' + req.query.directory});
    });
 });
 
@@ -133,14 +133,8 @@ app.delete('/music/delete', function(req, res) {
   }
   ip = ip.split('.').join('');
   
-  path = process.cwd() + '/public/music/' + ip + '/';
-  readDirectory(function(logFiles){
-     if(logFiles[0]) {
-       for(let i = 0; i < logFiles[0].length; i++) {
-         rimraf.sync(process.cwd() + "/public/music/" + logFiles[0][i]);
-       }   
-     }
-     res.json({files : logFiles});
+  rimraf(process.cwd() + "/public/music/" + ip, function() {
+    res.json("Your personal directory has been deleted.");
   });
 });
 

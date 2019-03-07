@@ -18,6 +18,12 @@ h2 {
   font-size: 24px;
 }
 
+input, select {
+  font-size: 20px;
+  height: 50px;
+  width: 270px;
+}
+
 .container {
   height: 100%;
 }
@@ -31,11 +37,15 @@ h2 {
   margin-right: 100px;
 }
 
+.view form {
+  margin-bottom: 20px;
+}
+
 button {
   font-size: 24px;
-  height: 50px;
+  height: 35px;
   margin-right: 20px;
-  width: 270px;
+  width: 250px;
 }
 
 #midi {
@@ -46,6 +56,10 @@ button {
   font-weight: bold;
   margin-right: 0;
   padding: 5px 20px;
+}
+
+#getFiles {
+  margin-right: 10px;
 }
 
 #record, #stop, #wav {

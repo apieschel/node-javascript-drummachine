@@ -31,14 +31,20 @@
     <div class="flex-container outer">
       <div class="view">    
         <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
-          <input id="inputfield" type="file" name="upfile" multiple required>
-          <input id="button" type="submit" value="UPLOAD">
+          <div class="flex-container">
+            <input id="inputfield" type="file" name="upfile" multiple required>
+            <input id="button" type="submit" value="UPLOAD">
+          </div>
         </form>
         <form method="GET" action="/music/directory" id="currentFiles">
-          <input id="getFiles" type="submit" value="LOAD .WAV FILES">
+          <div class="flex-container" id="wavContainer">
+            <input id="getFiles" type="submit" value="LOAD .WAV FILES">
+          </div>
         </form>
         <form action="/music/delete" id="clearDirectory">
-          <input type="submit" value="CLEAR DIRECTORY">
+          <div class="flex-container">
+            <input type="submit" value="CLEAR DIRECTORY">
+          </div>
         </form>
         
         <div class="instructions">

@@ -20,7 +20,7 @@ $(document).ready(function() {
               option.innerText = data.files[0][i];
               select.append(option);
             }
-            document.querySelector("#currentFiles").append(select);
+            document.querySelector("#wavContainer").append(select);
           }
         }
       });

@@ -141,6 +141,10 @@ audio {
   margin-top: 20px;
 }
 
+.recordContainer {
+  margin-bottom: 20px;
+}
+
 @media screen and (max-width: 700px) {
   body .glitchButton {
     display: none;

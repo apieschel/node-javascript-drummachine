@@ -229,7 +229,7 @@ document.addEventListener("keypress", function (e) {
       const flex = document.createElement("div");
       flex.className = "flex-container";
       flex.append(audio);
-      document.querySelector(".container").append(flex);
+      document.querySelector(".recordContainer").append(flex);
       
       document.getElementById("wav").className = "hidden";
       document.getElementById("record").className = "";

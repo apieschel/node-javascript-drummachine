@@ -69,14 +69,16 @@
       </div>
 
       <div class="container">
-        <div class="flex-container">
-          <canvas id="screen" width="637" height="350"></canvas>
+        <div class="recordContainer">
+          <div class="flex-container">
+            <button id="record">RECORD</button>
+            <button id="stop" class="hidden">STOP</button>
+            <button id="wav" class="hidden">CREATE .WAV FILE</button>
+            <button id="midi">MIDI OFF</button>
+          </div>
         </div>
         <div class="flex-container">
-          <button id="record">RECORD</button>
-          <button id="stop" class="hidden">STOP</button>
-          <button id="wav" class="hidden">CREATE .WAV FILE</button>
-          <button id="midi">MIDI OFF</button>
+          <canvas id="screen" width="637" height="350"></canvas>
         </div>
       </div>
     </div>

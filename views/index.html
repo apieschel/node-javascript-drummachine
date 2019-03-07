@@ -27,20 +27,9 @@
   </head>
   <body>
     
-    <div class="flex-container">
+    <div class="flex-container outer">
       <div class="view">    
-        <div class="instructions">
-          <h2>Instructions</h2>
-          <ul>
-            <li>MIDI: Web browsers aren't great at keeping accurate time. If you want an accurate BPM, 
-            then you can hook up an external sampler or drum machine to your computer (via MIDI interface) to keep time. 
-            Tell the drum machine to play 16 straight sixteenth notes, 
-            and this machine in the browser will update its count every time your external 
-            drum machine plays a note. Click the "MIDI" button, and try it out! 
-            While MIDI is off, the browser will keep time on its own. </li>
-            <li>Press "C" on your keyboard to clear the tracks.</li>
-          </ul>
-        </div>
+        
         <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
           <input id="inputfield" type="file" name="upfile" multiple required>
           <input id="button" type="submit" value="UPLOAD">
@@ -51,7 +40,20 @@
         <form action="/music/delete" id="clearDirectory">
           <input type="submit" value="CLEAR DIRECTORY">
         </form>
-        <div id="jsonResult"></div>
+        
+        <div class="instructions">
+          <h2>Instructions</h2>
+          <ul>
+            <li><strong><u>MIDI</u></strong>: Web browsers aren't great at keeping accurate time. If you want an accurate BPM, 
+            then you can hook up an external sampler or drum machine to your computer (via MIDI interface) to keep time. 
+            Tell the drum machine to play 16 straight sixteenth notes, 
+            and this machine in the browser will update its count every time your external 
+            drum machine plays a note. Click the "MIDI" button, and try it out! 
+            While MIDI is off, the browser will keep time on its own. </li>
+            <li><strong><u>RECORD</u></strong>: Click "RECORD" to start recording. Click the button again to stop recording. Then click again to turn your drum loop into an HTML audio element that you can download as a .wav file.</li>
+            <li><strong><u>CLEAR TRACKS</u></strong>: Press "C" on your keyboard to clear the tracks.</li>
+          </ul>
+        </div>
       </div>
 
       <div class="container">

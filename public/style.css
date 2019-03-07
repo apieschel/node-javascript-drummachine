@@ -10,7 +10,7 @@ h1 {
   font-size: 30px;
   font-weight: normal;
   margin-bottom: 50px;
-  margin-top: 100px;
+  margin-top: 80px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -27,6 +27,10 @@ input, select {
   font-size: 20px;
   height: 50px;
   width: 290px;
+}
+
+select {
+  padding: 10px;
 }
 
 #inputfield {
@@ -75,6 +79,7 @@ button {
   background: #00BA8C;
   border: 1px solid #00BA8C;
   color: white;
+  font-weight: bold;
 }
 
 #getFiles {

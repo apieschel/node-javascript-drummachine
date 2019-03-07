@@ -13,6 +13,7 @@ app.get('/', function(request, response) {
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
+    console.log(req);
     const now = Date.now();
     const date = new Date();
     const dateString = date.getMonth() + "-" + date.getDate() + "-" + date.getFullYear() + "_" + date.getHours() + "h" + date.getMinutes() + "m";

@@ -63,7 +63,6 @@ app.use(helmet({
   frameguard: {
      action: 'deny'
   },
-  noCache: true,
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'", "https://api.glitch.com"],

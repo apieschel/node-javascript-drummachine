@@ -8,6 +8,7 @@ body, html {
 h1 {
   color: white;
   font-size: 30px;
+  font-weight: normal;
   margin-bottom: 50px;
   margin-top: 100px;
   text-align: center;
@@ -19,9 +20,19 @@ h2 {
 }
 
 input, select {
+  border-radius: 2px;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  cursor: pointer;
   font-size: 20px;
   height: 50px;
-  width: 270px;
+  width: 290px;
+}
+
+#inputfield {
+  color: white;
+  margin-right: 10px;
+  padding: 10px;
 }
 
 .container {
@@ -42,10 +53,11 @@ input, select {
 }
 
 button {
+  box-sizing: border-box;
   font-size: 24px;
-  height: 35px;
+  height: 50px;
   margin-right: 20px;
-  width: 250px;
+  width: 270px;
 }
 
 #midi {
@@ -53,12 +65,23 @@ button {
   border: 1px solid #00BA8C;
   border-radius: 2px;
   color: white;
+  cursor: pointer;
   font-weight: bold;
   margin-right: 0;
   padding: 5px 20px;
 }
 
+#button {
+  background: #00BA8C;
+  border: 1px solid #00BA8C;
+  color: white;
+}
+
 #getFiles {
+  background: #F15A2B;
+  border: 1px solid #F15A2B;
+  color: white;
+  font-weight: bold;
   margin-right: 10px;
 }
 
@@ -67,6 +90,7 @@ button {
   border: 1px solid darkred;
   border-radius: 2px;
   color: white;
+  cursor: pointer;
   font-size: 24px;
   font-weight: bold;
   padding: 5px 20px;
@@ -78,6 +102,13 @@ button {
 
 #wav {
   background: #F15A2B;
+}
+
+#clear {
+  background: darkred;
+  border: 1px solid darkred;
+  color: white;
+  font-weight: bold;
 }
 
 .hidden {

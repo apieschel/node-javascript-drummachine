@@ -8,7 +8,7 @@ const screen = document.getElementById("screen").getContext("2d");
 const green = "#00BA8C";
 const orange = "#F15A2B";
 
-const kick = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_bassdrum.wav?1550690555700');
+const kick = new Audio('https://cdn.glitch.com/17f54245-b142-4cf8-a81b-65e0b36f6b8f%2FMT52_bassdrum.wav?1551990664247');
 const snare = new Audio('https://cdn.glitch.com/17f54245-b142-4cf8-a81b-65e0b36f6b8f%2FMT52_snare.wav?1551990663373');
 const snareSide = new Audio('https://cdn.glitch.com/17f54245-b142-4cf8-a81b-65e0b36f6b8f%2FMT52_snare_sidestick.wav?1551990663860');
 const conga = new Audio('https://cdn.glitch.com/17f54245-b142-4cf8-a81b-65e0b36f6b8f%2FMT52_conga.wav?1551990662263');
@@ -155,9 +155,8 @@ function getMIDIMessage(message) {
         
       }
       break;
-    case 128: // noteOff
+    case 128:
         break;
-    // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
   }
 }
 

@@ -2,15 +2,14 @@ const express = require('express');
 const app = express();
 const rimraf = require("rimraf");
 
-// http://expressjs.com/en/starter/static-files.html
 app.use('/public', express.static(process.cwd() + '/public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
 const multer = require('multer');
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     let ip = req.headers['x-forwarded-for'];
@@ -50,17 +49,15 @@ const filter = function fileFilter (req, file, cb) {
   let extension = nameArray[nameArray.length - 1];
   
   if(extension === "wav") {
-    console.log("File successfully uploaded");
     cb(null, true);
   } else {
-    console.log("File was rejected");
     cb(null, false);
   }
 }
 
 const upload = multer({storage: storage, fileFilter: filter});
 
-// security
+// helmet security
 const helmet = require('helmet');
 app.use(helmet({
   frameguard: {
@@ -124,16 +121,6 @@ app.get('/music/directory', function(req,res){
 });
 
 app.post('/api/fileanalyse', upload.array('upfile', 20), function (req, res, next) {
-  /*res.json(
-    {
-      name: req.file.originalname, 
-      size: req.file.size, 
-      mimetype: req.file.mimetype,
-      path: req.file.path,
-      destination: req.file.destination,
-      folderName: req.body.title
-    }
-  );*/
   res.redirect('/');
 });
 
@@ -152,7 +139,6 @@ app.delete('/music/delete', function(req, res) {
   });
 });
 
-// listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });

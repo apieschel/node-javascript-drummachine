@@ -2,7 +2,7 @@ body, html {
   background: black;
   height: 100%;
   margin: 0;
-  padding-top: 1%;
+  padding-top: 2%;
 }
 
 .container {
@@ -12,6 +12,10 @@ body, html {
 .flex-container {
   display: flex; 
   justify-content: center;
+}
+
+.view {
+  margin-right: 100px;
 }
 
 button {

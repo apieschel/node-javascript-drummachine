@@ -27,37 +27,43 @@
   </head>
   <body>
     
-    <div class="view">
-      <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
-        <input id="inputfield" type="file" name="upfile" multiple required>
-        <input id="button" type="submit" value="UPLOAD">
-      </form>
-      <form method="GET" action="/music/directory" id="currentFiles">
-        <input id="getFiles" type="submit" value="LOAD .WAV FILES">
-      </form>
-      <form action="/music/delete" id="clearDirectory">
-        <input type="submit" value="CLEAR DIRECTORY">
-      </form>
-      <div id="jsonResult"></div>
-    </div>
-    
-    <div class="container">
-      <div class="instructions">
-        <strong><u>Instructions</u>:</strong> Web browsers aren't great at keeping accurate time. If you want an accurate BPM, 
-        then you can hook up an external sampler or drum machine to your computer (via MIDI interface) to keep time. 
-        Tell the drum machine to play 16 straight sixteenth notes, 
-        and this machine in the browser will update its count every time your external 
-        drum machine plays a note. Click the "MIDI" button, and try it out! 
-        While MIDI is off, the browser will keep time on its own. Press "C" on your keyboard to clear the tracks.
+    <div class="flex-container">
+      <div class="view">    
+        <div class="instructions">
+          <h2>Instructions</h2>
+          <ul>
+            <li>MIDI: Web browsers aren't great at keeping accurate time. If you want an accurate BPM, 
+            then you can hook up an external sampler or drum machine to your computer (via MIDI interface) to keep time. 
+            Tell the drum machine to play 16 straight sixteenth notes, 
+            and this machine in the browser will update its count every time your external 
+            drum machine plays a note. Click the "MIDI" button, and try it out! 
+            While MIDI is off, the browser will keep time on its own. </li>
+            <li>Press "C" on your keyboard to clear the tracks.</li>
+          </ul>
+        </div>
+        <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
+          <input id="inputfield" type="file" name="upfile" multiple required>
+          <input id="button" type="submit" value="UPLOAD">
+        </form>
+        <form method="GET" action="/music/directory" id="currentFiles">
+          <input id="getFiles" type="submit" value="LOAD .WAV FILES">
+        </form>
+        <form action="/music/delete" id="clearDirectory">
+          <input type="submit" value="CLEAR DIRECTORY">
+        </form>
+        <div id="jsonResult"></div>
       </div>
-      <div class="flex-container">
-        <canvas id="screen" width="637" height="350"></canvas>
-      </div>
-      <div class="flex-container">
-        <button id="record">RECORD</button>
-        <button id="stop" class="hidden">STOP</button>
-        <button id="wav" class="hidden">CREATE .WAV FILE</button>
-        <button id="midi">MIDI OFF</button>
+
+      <div class="container">
+        <div class="flex-container">
+          <canvas id="screen" width="637" height="350"></canvas>
+        </div>
+        <div class="flex-container">
+          <button id="record">RECORD</button>
+          <button id="stop" class="hidden">STOP</button>
+          <button id="wav" class="hidden">CREATE .WAV FILE</button>
+          <button id="midi">MIDI OFF</button>
+        </div>
       </div>
     </div>
 

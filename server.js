@@ -43,7 +43,22 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + '-' + file.originalname);
   }
 });
-const upload = multer({storage: storage});
+
+const filter = function fileFilter (req, file, cb) {
+  let nameString = file.originalname;
+  let nameArray = nameString.split(".");
+  let extension = nameArray[nameArray.length - 1];
+  
+  if(extension === "wav") {
+    console.log("File successfully uploaded");
+    cb(null, true);
+  } else {
+    console.log("File was rejected");
+    cb(null, false);
+  }
+}
+
+const upload = multer({storage: storage, fileFilter: filter});
 
 // security
 const helmet = require('helmet');

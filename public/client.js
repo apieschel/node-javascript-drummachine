@@ -33,9 +33,9 @@ $(document).ready(function() {
       type: "DELETE",
       url: url,
       data: $(this).serialize(),
-      success: function(data)
-      {
-        alert(data);
+      success: function(data) {
+        alert("All files deleted from the music directory.");
+        location.reload();
       }
     });
     e.preventDefault();

@@ -94,6 +94,11 @@ app.delete('/music/delete', function(req, res) {
   logs = []; 
   path = process.cwd() + '/public/music/';
   readDirectory(function(logFiles){
+     console.log(logFiles[0]);
+     for(let i = 0; i < logFiles[0].length; i++) {
+       console.log(logFiles[0][i]);
+       rimraf.sync(process.cwd() + "/public/music/" + logFiles[0][i]);
+     }
      res.json({files : logFiles});
   });
 });

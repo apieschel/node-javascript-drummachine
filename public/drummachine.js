@@ -281,7 +281,7 @@ document.addEventListener("keypress", function (e) {
       console.log(tracks);
       data.tracks = tracks;
       console.log(data.tracks); 
-      document.getElementById("screen").height = (data.tracks.length - 3) * 50;
+      document.getElementById("screen").height = data.tracks.length * 48;
     }
     request.send();
     

@@ -77,7 +77,16 @@ function readDirectory(callback){
 
 app.get('/music', function(req,res){
    logs = []; 
-   path = process.cwd() + '/public/music/';
+  
+   let ip = req.headers['x-forwarded-for'];
+   if(ip) {
+     ip = req.headers['x-forwarded-for'].split(',').shift();
+   } else {
+     ip = req.connection.remoteAddress;
+   }
+   ip = ip.split('.').join('');
+  
+   path = process.cwd() + '/public/music/' + ip + '/';
    readDirectory(function(logFiles){
      res.json({files : logFiles});
    });
@@ -85,7 +94,16 @@ app.get('/music', function(req,res){
 
 app.get('/music/directory', function(req,res){
    logs = [];
-   path = process.cwd() + '/public/music/' + req.query.directory;
+  
+   let ip = req.headers['x-forwarded-for'];
+   if(ip) {
+     ip = req.headers['x-forwarded-for'].split(',').shift();
+   } else {
+     ip = req.connection.remoteAddress;
+   }
+   ip = ip.split('.').join('');
+  
+   path = process.cwd() + '/public/music/' + ip + '/' + req.query.directory;
    readDirectory(function(logFiles){
      res.json({files : logFiles, directory: req.query.directory});
    });
@@ -113,6 +131,7 @@ app.delete('/music/delete', function(req, res) {
   } else {
     ip = req.connection.remoteAddress;
   }
+  ip = ip.split('.').join('');
   
   path = process.cwd() + '/public/music/' + ip + '/';
   readDirectory(function(logFiles){

@@ -14,6 +14,18 @@ const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     console.log(req);
+    let ip = req.headers['x-forwarded-for'];
+    if(ip) {
+      ip = req.headers['x-forwarded-for'].split(',').shift();
+    } else {
+      ip = req.connection.remoteAddress;
+    }
+    
+    console.log(ip);
+    if (!fs.existsSync(ip)) {
+        fs.mkdirSync(ip);
+    }
+    
     const now = Date.now();
     const date = new Date();
     const dateString = date.getMonth() + "-" + date.getDate() + "-" + date.getFullYear() + "_" + date.getHours() + "h" + date.getMinutes() + "m";
@@ -24,7 +36,7 @@ const storage = multer.diskStorage({
         fs.mkdirSync(dir);
     }
     
-    cb(null, 'public/music/'  + path);
+    cb(null, 'public/music/'  + ip + '/' + path);
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname);
@@ -93,12 +105,21 @@ app.post('/api/fileanalyse', upload.array('upfile', 20), function (req, res, nex
 
 app.delete('/music/delete', function(req, res) {
   logs = []; 
-  path = process.cwd() + '/public/music/';
+  let ip = req.headers['x-forwarded-for'];
+  if(ip) {
+    ip = req.headers['x-forwarded-for'].split(',').shift();
+  } else {
+    ip = req.connection.remoteAddress;
+  }
+  
+  path = process.cwd() + '/public/music/' + ip + '/';
   readDirectory(function(logFiles){
      console.log(logFiles[0]);
-     for(let i = 0; i < logFiles[0].length; i++) {
-       console.log(logFiles[0][i]);
-       rimraf.sync(process.cwd() + "/public/music/" + logFiles[0][i]);
+     if(logFiles[0]) {
+       for(let i = 0; i < logFiles[0].length; i++) {
+         console.log(logFiles[0][i]);
+         rimraf.sync(process.cwd() + "/public/music/" + logFiles[0][i]);
+       }   
      }
      res.json({files : logFiles});
   });

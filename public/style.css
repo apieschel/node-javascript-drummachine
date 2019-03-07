@@ -9,10 +9,17 @@ h1 {
   color: white;
   font-size: 30px;
   font-weight: normal;
-  margin-bottom: 50px;
   margin-top: 80px;
   text-align: center;
   text-transform: uppercase;
+}
+
+h2 {
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 h2 {

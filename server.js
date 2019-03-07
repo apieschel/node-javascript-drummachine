@@ -22,7 +22,6 @@ const storage = multer.diskStorage({
     
     ip = ip.split('.').join('');
     ip = process.cwd() + '/public/music/' + ip;
-    console.log(ip);
     
     if (!fs.existsSync(ip)) {
         fs.mkdirSync(ip);

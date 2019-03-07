@@ -36,7 +36,6 @@ let interval = setInterval(function() {
   data.tracks
     .filter(function(track) { return track.steps[data.step]; })
     .forEach(function(track) {
-      console.log(track);
       let clone = track.playSound.cloneNode(true);
       let buffer;
       
@@ -258,29 +257,22 @@ document.addEventListener("keypress", function (e) {
         values[this.name] = $(this).val();
     });
     
-    console.log($inputs);
-    console.log(values.directory);
-    
     clearInterval(interval);
     data.tracks = [];
-    console.log(e);
     
     const request = new XMLHttpRequest();
     request.open('GET', '/music/directory?directory=' + values.directory);
     request.onload = function() {
-      console.log(request);
       let res = JSON.parse(request.response);
       let tracks = [];
-      console.log(typeof(res));
       if(res.files[0]) {
         for(let i = 0; i < res.files[0].length; i++) {
           let audioSrc = "/public/music/" + res.directory + "/" + res.files[0][i];
           tracks.push(createTrack(green, new Audio(audioSrc)));
         }
       }
-      console.log(tracks);
-      data.tracks = tracks;
-      console.log(data.tracks); 
+      
+      data.tracks = tracks; 
       document.getElementById("screen").height = data.tracks.length * 48;
     }
     request.send();
@@ -291,7 +283,6 @@ document.addEventListener("keypress", function (e) {
           data.tracks
             .filter(function(track) { return track.steps[data.step]; })
             .forEach(function(track) {
-              console.log(track);
               let clone = track.playSound.cloneNode(true);
               let buffer;
 
@@ -318,58 +309,6 @@ document.addEventListener("keypress", function (e) {
             });
         }, 100);
     
-    /*
-    $.ajax({
-      url: '/music/directory',
-      type: 'get',
-      data: $('#currentFiles').serialize(),
-      success: function(data) {
-        let tracks = [];
-        if(data.files[0]) {
-          console.log(data);
-          for(let i = 0; i < data.files[0].length; i++) {
-            let audioSrc = "/public/music/" + data.directory + "/" + data.files[0][i];
-            tracks.push(createTrack(green, audioSrc));
-          }
-        }
-        console.log(tracks);
-        data.tracks = tracks;
-        console.log(data.tracks);  
-        
-        interval = setInterval(function() {
-          data.step = (data.step + 1) % data.tracks[0].steps.length;
-
-          data.tracks
-            .filter(function(track) { return track.steps[data.step]; })
-            .forEach(function(track) {
-              let clone = track.playSound.cloneNode(true);
-              let buffer;
-
-              const request = new XMLHttpRequest();
-              request.open('GET', track.playSound.src, true);
-              request.responseType = 'arraybuffer';
-              request.onload = function() {
-                ac.decodeAudioData(request.response, function(buffer) {
-                  buffer = buffer;
-
-                  const gain = ac.createGain();
-                  const playSound = ac.createBufferSource();
-                  playSound.buffer = buffer;
-                  playSound.connect(gain);
-                  gain.connect(recorderNode);
-                  gain.connect(ac.destination);
-                  playSound.start(0);
-
-                  clone.remove();
-                });     
-              }
-
-              request.send();
-            });
-        }, 100);
-      }
-    });
-    */
     e.preventDefault();
   });
   

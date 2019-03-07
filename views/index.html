@@ -1,17 +1,11 @@
-<!-- This is a static file -->
-<!-- served from your routes in server.js -->
-
-<!-- You might want to try something fancier: -->
-<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
-<!-- pug: https://pugjs.org/ -->
-<!-- haml: http://haml.info/ -->
-<!-- hbs(handlebars): http://handlebarsjs.com/ -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Javascript Drum Machine</title>
-    <meta name="description" content="A cool thing made with Glitch">
+    <meta name="description" content="Javascript drum machine: 
+                                      Record drum loops in the browser and download them as .wav files. 
+                                      Set tempo with an external midi clock. 
+                                      Upload your own drum samples.">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +21,8 @@
   </head>
   <body>
     
-    <h1>Drum Machine (Record, Set Tempo with MIDI, and Upload Your Own Samples)</h1>
+    <h1>Javascript Drum Machine</h1>
+    <h2> Set tempo with external MIDI device, upload your own samples, and record your own drum loops in the web browser.</h2>
     <div class="flex-container outer">
       <div class="view">    
         <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse" id="upload">
@@ -48,11 +43,11 @@
         </form>
         
         <div class="instructions">
-          <h2>Instructions</h2>
+          <h3>Instructions</h3>
           <ul>
-            <li><strong><u>DRUM MACHINE</u></strong>: Click on the white squares to play different sounds.</li>
+            <li><strong><u>DRUM MACHINE</u></strong>: Click on the white squares to play different sounds on the default drum machine.</li>
             <li><strong><u>RECORD</u></strong>: Click "RECORD" to start recording your drum loop. 
-            Click the button again to stop. Then click again to turn your drum loop 
+            Click again to stop recording. Then click again to turn your drum loop 
             into an HTML audio element that you can download as a .wav file.</li>
             <li><strong><u>CLEAR TRACKS</u></strong>: Press "C" on your keyboard to clear the tracks.</li>
             <li><strong><u>UPLOAD</u></strong>: You can upload your own sample packs to play with this drum machine.
@@ -86,10 +81,7 @@
       </div>
     </div>
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js"></script>
-
   </body>
 </html>

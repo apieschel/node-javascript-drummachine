@@ -26,4 +26,19 @@ $(document).ready(function() {
       });
     }
   } 
+  
+  $('#clearDirectory').submit(function(e){
+    const url = "/music/delete";
+    $.ajax({
+      type: "DELETE",
+      url: url,
+      data: $(this).serialize(),
+      success: function(data)
+      {
+        alert(data);
+      }
+    });
+    e.preventDefault();
+  });
+  
 });

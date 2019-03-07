@@ -1,9 +1,6 @@
-// server.js
-// where your node app starts
-
-// init project
 const express = require('express');
 const app = express();
+const rimraf = require("rimraf");
 
 // http://expressjs.com/en/starter/static-files.html
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -93,6 +90,13 @@ app.post('/api/fileanalyse', upload.array('upfile', 20), function (req, res, nex
   res.redirect('/');
 });
 
+app.delete('/music/delete', function(req, res) {
+  logs = []; 
+  path = process.cwd() + '/public/music/';
+  readDirectory(function(logFiles){
+     res.json({files : logFiles});
+  });
+});
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {

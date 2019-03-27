@@ -151,9 +151,7 @@ function getMIDIMessage(message) {
 
             request.send();
           });
-      } else {
-        
-      }
+      } 
       break;
     case 128:
         break;

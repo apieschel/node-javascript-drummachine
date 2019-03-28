@@ -1,0 +1,158 @@
+body, html {
+  background: black;
+  font-family: Arial;
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  color: white;
+  font-size: 30px;
+  font-weight: normal;
+  margin-top: 80px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+a, a:visited {
+  color: skyblue;
+}
+
+input, select {
+  border-radius: 2px;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 20px;
+  height: 50px;
+  width: 290px;
+}
+
+select {
+  padding: 10px;
+}
+
+#inputfield {
+  color: white;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.container {
+  height: 100%;
+}
+
+.flex-container {
+  display: flex; 
+  justify-content: center;
+}
+
+.view {
+  margin-right: 50px;
+}
+
+.view form {
+  margin-bottom: 20px;
+}
+
+button {
+  box-sizing: border-box;
+  font-size: 24px;
+  height: 50px;
+  margin-right: 20px;
+  width: 270px;
+}
+
+#midi {
+  background: #00BA8C;
+  border: 1px solid #00BA8C;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 0;
+  padding: 5px 20px;
+}
+
+#button {
+  background: skyblue;
+  border: 1px solid skyblue;
+  font-weight: bold;
+}
+
+#getFiles {
+  background: #F15A2B;
+  border: 1px solid #F15A2B;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#record, #stop, #wav {
+  background: darkred;
+  border: 1px solid darkred;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 5px 20px;
+}
+
+#record {
+  background: red;
+}
+
+#wav {
+  background: #F15A2B;
+}
+
+#clear {
+  background: darkred;
+  border: 1px solid darkred;
+  color: white;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.instructions {
+  color: white;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  width: 600px;
+}
+
+audio {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.recordContainer {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  body .glitchButton {
+    display: none;
+  }
+  
+  .outer {
+    flex-direction: column;
+  }
+}

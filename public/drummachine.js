@@ -208,17 +208,20 @@ document.addEventListener("keypress", function (e) {
   // Record button click event
   document.getElementById("record").addEventListener("click", function() {
     rec.record();
+    console.log(rec);
     document.getElementById("record").className = "hidden";
     document.getElementById("stop").className = "";
   });
   
   document.getElementById("stop").addEventListener("click", function() {
     rec.stop();
+    console.log(rec);
     document.getElementById("stop").className = "hidden";
     document.getElementById("wav").className = "";
   });
   
   document.getElementById("wav").addEventListener("click", function() {  
+    console.log(rec);
     rec.exportWAV(function(blob) {
       const audio = document.createElement("audio");
       const url = URL.createObjectURL(blob);

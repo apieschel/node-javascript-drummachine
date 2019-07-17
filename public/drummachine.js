@@ -1,6 +1,7 @@
 const ac = new AudioContext();
 const recorderNode = ac.createGain();
 const rec = new Recorder(recorderNode);
+console.log(rec);
 
 // source: http://drum-machine.maryrosecook.com/
 const BUTTON_SIZE = 26;

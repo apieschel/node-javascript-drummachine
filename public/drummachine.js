@@ -1,6 +1,6 @@
 const ac = new AudioContext();
 const recorderNode = ac.createGain();
-const rec = new Recorder(recorderNode, [{workerPath: 'js/recorderjs/recorderWorker.js'}]);
+const rec = new Recorder(recorderNode);
 console.log(rec);
 
 // source: http://drum-machine.maryrosecook.com/

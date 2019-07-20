@@ -195,16 +195,16 @@ function update() {
     });
   });
   
-document.addEventListener("keypress", function (e) {
+  document.addEventListener("keypress", function (e) {
     e = e || window.event;
     if(e.keyCode === 99) {
       data.tracks.forEach(function(track, row) {
-      track.steps.forEach(function(on, column) {
-          track.steps[column] = false;    
+        track.steps.forEach(function(on, column) {
+            track.steps[column] = false;    
+        });
       });
-    });
     }
-});
+  });
   
   // Record button click event
   document.getElementById("record").addEventListener("click", function() {
